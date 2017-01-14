@@ -8,7 +8,7 @@
 //used to indicate current status
 //possible to get out of sync when lights are
 //manually turned off
-$x10_lock_dir = "/tmp/x10/";
+$x10_lock_dir = "/var/lock/x10/";
 
 $default_house = "G";
 
