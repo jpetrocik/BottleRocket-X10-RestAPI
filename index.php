@@ -114,6 +114,6 @@ if ($cmd === "ALL_OFF") {
 
 closelog();
 
-$results = array('status' => $status?"on":"off");
+$results = array('house' => $house, 'device' => $device, 'status' => $status?"on":"off");
 echo json_encode($results);
 ?>
