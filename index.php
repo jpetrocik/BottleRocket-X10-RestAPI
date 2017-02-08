@@ -1,4 +1,5 @@
 <?php
+include 'scripts.php';
 
 //house	device	description
 //G	1	living room ceilling lights
@@ -87,7 +88,10 @@ if (!isset($house))
 	$house = $default_house;
 
 
-if ($cmd === "ALL_OFF") {
+if (function_exists($device)) {
+	$device($cmd);
+	$status = true;
+} elseif ($cmd === "ALL_OFF") {
 	allOff($house);
 	$status = false;
 } elseif ($cmd === "ALL_ON") {
