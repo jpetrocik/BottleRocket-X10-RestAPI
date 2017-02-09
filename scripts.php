@@ -6,7 +6,11 @@
  */
 
 function movie($cmd){
-	deviceOn("G", "3");
-	sleep(3);
-	deviceOff("G", "1");
+	if ($cmd === "ON") {
+		deviceOn("G", "3");
+		//sleep(1);
+		deviceOff("G", "1");
+	} else {
+		deviceOff("G", "3");
+	}
 }

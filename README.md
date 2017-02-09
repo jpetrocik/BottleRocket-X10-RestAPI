@@ -1,4 +1,4 @@
-# x10-restapi
+# BottleRocket-X10-RestAPI
 
 A php restful service to turn on and off X10 lights and devices for home automation. Since X10 doesn't report whether the light is off or on, the status is maintained via the code. 
 
@@ -72,7 +72,9 @@ POST: Turns On
 
 DELETE: Turns Off
 
+# Lighting Modes
 
+Lighting modes allow a single rest call to turn on and off a set of lights. Usefull for setting up lights for watching TV.  
 
 
 
