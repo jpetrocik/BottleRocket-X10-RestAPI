@@ -1,10 +1,14 @@
 <?php
+//need when run from cron
+chdir(dirname(__FILE__));
+
 require_once 'Config/Lite.php';
 include 'x10.php';
 
-$config = new Config_Lite('config.ini');
+$config = new Config_Lite('config.ini',true);
 
 date_default_timezone_set('America/Los_Angeles');
+
 /*
  * Turns the light on or off based on a time window.  Lights will
  * only get turned off if they are on between a 10 minute window
@@ -49,10 +53,10 @@ function lightTimer($light){
 		$config->save();
 	} else {
 		if (!$status) {
-				syslog(LOG_INFO, "$light lights will turn on at " . date(DATE_RFC2822, $onTime));
-			} else {
-				syslog(LOG_INFO, "$light lights will turn off at " . date(DATE_RFC2822, $offTime));
-			}
+			syslog(LOG_INFO, "$light lights will turn on at " . date(DATE_RFC2822, $onTime));
+		} else {
+			syslog(LOG_INFO, "$light lights will turn off at " . date(DATE_RFC2822, $offTime));
+		}
 	}
 }
 
