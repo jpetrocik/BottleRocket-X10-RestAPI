@@ -14,8 +14,12 @@ OAuth2\Autoloader::register();
 // $dsn is the Data Source Name for your database, for exmaple "mysql:dbname=my_oauth2_db;host=localhost"
 $storage = new OAuth2\Storage\Pdo(array('dsn' => $dsn, 'username' => $username, 'password' => $password));
 
+$config = array(
+    'access_lifetime' => 315360000
+);
+
 // Pass a storage object or array of storage objects to the OAuth2 server class
-$server = new OAuth2\Server($storage);
+$server = new OAuth2\Server($storage, $config);
 
 // Add the "Client Credentials" grant type (it is the simplest of the grant types)
 $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));

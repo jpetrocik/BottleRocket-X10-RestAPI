@@ -1,6 +1,7 @@
 <?php
 include 'x10.php';
 include 'scripts.php';
+include 'auth.php';
 
 //house	device	description
 //G	1	living room ceilling lights
