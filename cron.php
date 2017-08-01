@@ -18,10 +18,15 @@ date_default_timezone_set('America/Los_Angeles');
 function lightTimer($light){
 	global $config;
 
+	if ($config->has($light, 'nextOnTime') == false) {
+		initializeConfig($light);
+	}
+
 	$offTime = $config->get($light, 'nextOffTime');
 	$onTime = $config->get($light, 'nextOnTime');
 	$house = $config->get($light, 'house');
 	$device = $config->get($light, 'device');
+
 
 	$status = checkDeviceStatus($house, $device);
 
@@ -73,6 +78,14 @@ function sunset(){
 	$json = json_decode($response);
 	$date = DateTime::createFromFormat(DateTime::ISO8601, $json->results->sunset);
 	return $date->getTimestamp();
+}
+
+function initializeConfig($light) {
+	global $config;
+
+	$onTime = sunset()-1800; //30 minutes before sunset
+	$config->set($light, 'nextOnTime', $onTime);
+	$config->save();
 }
 
 landscapeLights();
