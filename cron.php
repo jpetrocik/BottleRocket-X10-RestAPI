@@ -48,7 +48,7 @@ function lightTimer($light){
 		}
 
 		//updated next onTime
-		$onTime += (24 * 60 * 60);
+		$onTime = sunset()-1800; //30 minutes before sunset
 		$config->set($light, 'nextOnTime', $onTime);
 		$config->save();
 	} else {
@@ -68,8 +68,14 @@ function landscapeLights() {
 	lightTimer("Landscape");
 }
 
-landscapeLights();
+function sunset(){
+	$response = file_get_contents('https://api.sunrise-sunset.org/json?lat=33.806286&lng=-118.127506&date=today&formatted=0');
+	$json = json_decode($response);
+	$date = DateTime::createFromFormat(DateTime::ISO8601, $json->results->sunset);
+	return $date->getTimestamp();
+}
 
+landscapeLights();
 
 
 ?>
