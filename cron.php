@@ -53,7 +53,7 @@ function lightTimer($light){
 		}
 
 		//updated next onTime
-		$onTime = sunset()-1800; //30 minutes before sunset
+		$onTime = sunset();
 		$config->set($light, 'nextOnTime', $onTime);
 		$config->save();
 	} else {

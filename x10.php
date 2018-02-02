@@ -9,7 +9,7 @@ openlog("x10", LOG_PID | LOG_PERROR, LOG_LOCAL0);
 $x10_lock_dir = "/var/lock/x10/";
 
 function sendCommand($args) {
-	//exec('/usr/bin/br -x /dev/ttyS0 ' . $args);
+	exec('/usr/bin/br -x /dev/ttyS0 ' . $args);
 }
 
 //turns on all devices
