@@ -9,26 +9,26 @@ function smart_sendCommand($args) {
 	$client->enqueue($request)->send();
 
 	$response = $client->getResponse();
-    return $response->getBody();
+    	return $response->getBody();
 }
 
 //turns off a single device
 function smart_deviceOff($device) {
-	syslog(LOG_INFO, "Turning device $house $device off");
+	syslog(LOG_INFO, "Turning device $device off");
 	smart_sendCommand('http://192.168.1.' . $device . '/off');
 }
 
 //turns on a single device
 function smart_deviceOn($device) {
-	syslog(LOG_INFO, "Turning device $house $device on");
+	syslog(LOG_INFO, "Turning device $device on");
 	smart_sendCommand('http://192.168.1.' . $device . '/on');
 }
 
 
 function smart_checkDeviceStatus($device){
-	syslog(LOG_INFO, "Checking device $house $device status");
+	syslog(LOG_INFO, "Checking device $device status");
 	$response = smart_sendCommand('http://192.168.1.' . $device . '/');
-	$obj = json_decode('{"status":"OFF"}');
+	$obj = json_decode($response);
 	if ($obj->{'status'} == 'on')
 		return true;
 	return false;
