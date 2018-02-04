@@ -1,5 +1,6 @@
 <?php
 include 'x10.php';
+include 'smartWifi.php';
 include 'scripts.php';
 include 'auth.php';
 
@@ -30,13 +31,22 @@ if (function_exists($device)) {
 	allOn($house);
 	$status = true;
 } elseif ($cmd === "OFF") {
-	deviceOff($house, $device);
+	if ($device < 16)
+		deviceOff($house, $device);
+	else 
+		smart_deviceOff($device)
 	$status = false;
 } elseif ($cmd === "ON") {
-	deviceOn($house, $device);
+	if ($device < 16)
+		deviceOn($house, $device);
+	else 
+		smart_deviceOn($device)
 	$status = true;
 } elseif ($cmd === "STATUS") {
-	$status = checkDeviceStatus($house, $device);
+	if ($device < 16)
+		$status = checkDeviceStatus($house, $device);
+	else 
+		$status = smart_checkDeviceStatus($house, $device);
 } else {  //toggle lights
 	$status = checkDeviceStatus($house, $device);
 

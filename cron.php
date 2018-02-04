@@ -10,10 +10,10 @@ $config = new Config_Lite('config.ini',true);
 date_default_timezone_set('America/Los_Angeles');
 
 /*
- * Turns the light on or off based on a time window.  Lights will
- * only get turned off if they are on between a 10 minute window
- * of the off time.  This allows for the lights to be turned 
- * on outside of this timer window.
+ * Turns the light on or off based on a date and time. Lights will
+ * only get turned off or on if they are on/off after date and time. 
+ * The off/on date time get reset to the next day the next time script 
+ * is run after the on/off time
  */
 function lightTimer($light){
 	global $config;

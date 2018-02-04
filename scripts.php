@@ -7,7 +7,7 @@
 
 function movie($cmd){
 	if ($cmd === "ON") {
-		deviceOn("G", "3");
+		smart_deviceOn("145");
 		sleep(1);
 		deviceOff("G", "1");
 	}
