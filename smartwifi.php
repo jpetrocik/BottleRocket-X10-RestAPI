@@ -15,21 +15,21 @@ function smart_sendCommand($args) {
 //turns off a single device
 function smart_deviceOff($device) {
 	syslog(LOG_INFO, "Turning device $device off");
-	smart_sendCommand('http://192.168.1.' . $device . '/off');
+	smart_sendCommand('http://' . $device . '.local/off');
 }
 
 //turns on a single device
 function smart_deviceOn($device) {
 	syslog(LOG_INFO, "Turning device $device on");
-	smart_sendCommand('http://192.168.1.' . $device . '/on');
+	smart_sendCommand('http://' . $device . '.local/on');
 }
 
 
 function smart_checkDeviceStatus($device){
 	syslog(LOG_INFO, "Checking device $device status");
-	$response = smart_sendCommand('http://192.168.1.' . $device . '/');
+	$response = smart_sendCommand('http://' . $device . '.local/');
 	$obj = json_decode($response);
-	if ($obj->{'status'} == 'on')
+	if ($obj->{'status'} == 'ON')
 		return true;
 	return false;
 }

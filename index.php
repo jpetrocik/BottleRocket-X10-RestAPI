@@ -31,19 +31,19 @@ if (function_exists($device)) {
 	allOn($house);
 	$status = true;
 } elseif ($cmd === "OFF") {
-	if ($device < 16)
+	if (is_numeric($device))
 		deviceOff($house, $device);
 	else 
 		smart_deviceOff($device);
 	$status = false;
 } elseif ($cmd === "ON") {
-	if ($device < 16)
+	if (is_numeric($device))
 		deviceOn($house, $device);
 	else 
 		smart_deviceOn($device);
 	$status = true;
 } elseif ($cmd === "STATUS") {
-	if ($device < 16)
+	if (is_numeric($device))
 		$status = checkDeviceStatus($house, $device);
 	else 
 		$status = smart_checkDeviceStatus($device);
